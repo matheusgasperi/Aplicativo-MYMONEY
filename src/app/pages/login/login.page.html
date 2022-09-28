@@ -28,12 +28,14 @@
       <div class="slide-inner ion-padding">
         <span>Login</span>
 
-        <ion-item class="ion-margin-top" lines="none">
-          <ion-input type="email" placeholder="E-mail" [(ngModel)]="userLogin.email"></ion-input>
+        <ion-item class="ion-margin-top" >
+          <ion-label position="floating">E-mail</ion-label>
+          <ion-input type="email" [(ngModel)]="email"></ion-input>
         </ion-item>
 
-        <ion-item class="ion-margin-top" lines="none">
-          <ion-input type="password" placeholder="Senha" [(ngModel)]="userLogin.password"></ion-input>
+        <ion-item class="ion-margin-top">
+          <ion-label position="floating">Senha</ion-label>
+          <ion-input type="password" [(ngModel)]="password"></ion-input>
         </ion-item>
 
         <ion-button class="ion-margin-top" (click)="login()" color="light" expand="block">Entrar</ion-button>
@@ -44,19 +46,29 @@
       <div class="slide-inner ion-padding">
         <span>Cadastro</span>
 
-        <ion-item class="ion-margin-top" lines="none">
-          <ion-input type="text" placeholder="Nome" ></ion-input>
+        <ion-item class="ion-margin-top" >
+          <ion-label position="floating">Nome</ion-label>
+          <ion-input type="text" [(ngModel)]="name"></ion-input>
         </ion-item>
 
-        <ion-item class="ion-margin-top" lines="none">
-          <ion-input type="email" placeholder="E-mail" [(ngModel)]="userRegister.email"></ion-input>
+        <ion-item class="ion-margin-top">
+          <ion-label position="floating">E-mail</ion-label>
+          <ion-input type="email" [(ngModel)]="email"></ion-input>
         </ion-item>
 
-        <ion-item class="ion-margin-top" lines="none">
-          <ion-input type="password" placeholder="Senha" [(ngModel)]="userRegister.password"></ion-input>
+        <ion-item class="ion-margin-top" >
+          <ion-label position="floating">Senha</ion-label>
+          <ion-input type="password" placeholder="Senha" [(ngModel)]="password"></ion-input>
         </ion-item>
 
-        <ion-button class="ion-margin-top" (click)="register()" color="light" expand="block">Cadastrar</ion-button>
+        <ion-item class="ion-margin-top" >
+          <ion-label position="floating">Confirmar Senha</ion-label>
+          <ion-input type="password" [(ngModel)]="confirmPassword" (ionChange)="checkPassword()" ></ion-input>
+          <ion-text *ngIf="password && !passwordMatch" color="danger">Senha não corresponde!</ion-text>
+          <ion-text *ngIf="password && passwordMatch" color="success">Senha corresponde</ion-text>
+        </ion-item>
+
+        <ion-button class="ion-margin-top" [disabled]="!passwordMatch" (click)="register()" color="light" expand="block">Cadastrar</ion-button>
       </div>
     </ion-slide>
   </ion-slides>
@@ -78,8 +90,6 @@
 
       </div>
 
-  <div class="textu ion-text-center">
-    <span>Aplicativo criado para gerenciar seu dinheiro em relação a ganhos e gastos</span>
-  </div>
+
 
 </ion-content>

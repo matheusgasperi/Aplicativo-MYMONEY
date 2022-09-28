@@ -1,9 +1,12 @@
+
 /* eslint-disable @typescript-eslint/semi */
 /* eslint-disable arrow-body-style */
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFirestore,  AngularFirestoreCollection, docChanges } from '@angular/fire/compat/firestore';
 import { map } from 'rxjs/operators';
 import { Tran } from '../interfaces/tran';
+import { doc, docData} from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +14,13 @@ import { Tran } from '../interfaces/tran';
 export class TranService {
   private transCollection = this.afs.collection<Tran>('Trans')
 
-  constructor(private afs: AngularFirestore) {
+  constructor(
+    private afs: AngularFirestore,
+    private auth: AngularFireAuth,
 
-  }
+    ) {
+    }
+
   getTrans() {
     return this.transCollection.snapshotChanges().pipe(
       map(actions => {

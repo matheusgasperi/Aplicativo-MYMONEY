@@ -7,6 +7,7 @@ import { LoadingController, ToastController } from '@ionic/angular';
 import { TranService } from 'src/app/services/tran.service';
 import { Tran } from 'src/app/interfaces/tran';
 import { Subscription } from 'rxjs';
+import { User } from 'src/app/interfaces/user';
 
 @Component({
   selector: 'app-teste',
@@ -18,6 +19,8 @@ export class TestePage implements OnInit {
   private loading: any;
   public trans = new Array<Tran>();
   private transSubscription: Subscription;
+
+
 
   constructor(
 
